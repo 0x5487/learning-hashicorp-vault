@@ -15,4 +15,5 @@ services:
         - VAULT_ADDRESS=http://0.0.0.0:8200
       cap_add:
         - IPC_LOCK
-      command: vault server -dev -config=/vault/config/vault.json
+      #command: vault server -config=/vault/config/vault.json
+      command: vault server -dev
