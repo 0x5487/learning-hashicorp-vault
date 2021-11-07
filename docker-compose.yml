@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+    vault:
+      image: vault:latest
+      volumes:
+        - ${LOCAL_WORKSPACE_FOLDER}/data/vault/config:/vault/config
+        - ${LOCAL_WORKSPACE_FOLDER}/data/vault/policies:/vault/policies
+        - ${LOCAL_WORKSPACE_FOLDER}/data/vault/data:/vault/data
+      ports:
+        - 8200:8200
+      environment:
+        - VAULT_ADDR=http://0.0.0.0:8200
+        - VAULT_API_ADDR=http://0.0.0.0:8200
+        - VAULT_ADDRESS=http://0.0.0.0:8200
+      cap_add:
+        - IPC_LOCK
+      command: vault server -dev -config=/vault/config/vault.json
